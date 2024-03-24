@@ -9,9 +9,9 @@ public class Enrollee implements User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Long userId;
 
     @Column
-    public Integer reservatedCourseId;
+    public Long reservedCourseId;
 
 }
