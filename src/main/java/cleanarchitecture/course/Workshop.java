@@ -1,4 +1,4 @@
-package cleanarchitecture;
+package cleanarchitecture.course;
 
 import jakarta.persistence.*;
 import lombok.Getter;
