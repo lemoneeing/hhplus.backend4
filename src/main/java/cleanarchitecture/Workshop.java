@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-public class ImplementedCourse implements Course{
+public class Workshop implements Course{
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer courseId;
@@ -20,7 +20,7 @@ public class ImplementedCourse implements Course{
     public Integer capacity;
 
     @Column
-    public Integer reserved;
+    public Integer applicantCount;
 
     @Column
     @DateTimeFormat(pattern="yyyy-MM-dd")
