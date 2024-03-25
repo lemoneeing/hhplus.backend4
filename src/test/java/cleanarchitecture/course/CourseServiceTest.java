@@ -39,20 +39,16 @@ class CourseServiceTest {
         Assertions.assertThat(courses).isEqualTo(repository.findAll());
     }
 
-//    @Test
-//    void 특강_신청_처리(){
-//        Long userId = 1L;
-//        Long courseId = 1L;
-//
-//        repository.applicants.clear();
-//        Integer initApplicantCnt = repository.applicants.size();
-//
-//        Boolean result = service.reserve(userId, courseId);
-//
-//        // 특강의 applicantCount 값이 1 증가해야 함.
-//        Assertions.assertThat(result).isEqualTo(True);
-//        Assertions.assertThat(repository.applicants.size()).isEqualTo(initApplicantCnt+1); // Repository Test 로 가는 게 더 적절한건가?
-//    }
+    @Test
+    void 특강_신청_처리(){
+        Long courseId = 1L;
+        Integer initApplicantsCnt = service.getApplicants(courseId).size(); // 현재 강의의 수강 신청자 목록
+
+        Long userId = 1L;
+        service.reserveCourse(courseId, userId);
+
+        Assertions.assertThat(service.getApplicants(courseId).size()).isEqualTo(initApplicantsCnt + 1);
+    }
 //
 //    @Test
 //    void 특강_마감일_때_신청_실패_처리(){
