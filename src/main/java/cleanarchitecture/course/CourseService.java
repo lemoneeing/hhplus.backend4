@@ -1,22 +1,23 @@
 package cleanarchitecture.course;
 
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 //@RequiredArgsConstructor
 @Service
+@NoArgsConstructor
 public class CourseService {
-    private CourseRepository courseRepository;
+    private CourseRepository courseRepo;
 
     public CourseService(CourseRepository courseRepo){
-        this.courseRepository = courseRepo;
+        this.courseRepo = courseRepo;
     }
 
     public List<Course> getCourses() {
         // 수강 신청 전에 특강 목록을 보여줌.
-        return this.courseRepository.findAll();
+        return courseRepo.findAll();
     }
     
     public Boolean reserve(){
