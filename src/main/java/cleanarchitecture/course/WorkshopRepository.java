@@ -22,4 +22,20 @@ public class WorkshopRepository implements CourseRepository{
     public Optional<Course> findByCourseId(Long courseId) {
         return null;
     }
+
+    @Override
+    public List<Long> findApplicantsByCourseId(Long courseId) {
+        return courseMap.get(courseId).getApplicants();
+    }
+
+    @Override
+    public Boolean updateApplicants(Long courseId, Long userId) {
+        List<Long> applicants = courseMap.get(courseId).getApplicants();
+        applicants.add(userId);
+
+        courseMap.get(courseId).setApplicants(applicants);
+        return true;
+    }
+
+
 }
