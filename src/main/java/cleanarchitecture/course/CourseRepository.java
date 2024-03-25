@@ -2,5 +2,14 @@ package cleanarchitecture.course;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CourseRepository extends JpaRepository<Course, Integer> {
+import java.util.List;
+import java.util.Optional;
+
+//public interface CourseRepository extends JpaRepository<Course, Integer> {
+//}
+
+public interface CourseRepository {
+    Course save(Course course);
+    List<Course> findAll();
+    Optional<Course> findByCourseId(Long courseId);
 }
