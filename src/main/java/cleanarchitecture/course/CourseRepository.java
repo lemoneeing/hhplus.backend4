@@ -13,5 +13,5 @@ public interface CourseRepository {
     List<Course> findAll();
     Course findByCourseId(Long courseId);
     List<Long> findApplicantsByCourseId(Long courseId);
-    Boolean updateApplicants(Long courseId, Long userId);
+    Boolean updateApplicants(Long courseId);
 }

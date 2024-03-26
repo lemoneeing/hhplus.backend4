@@ -1,23 +1,18 @@
 package cleanarchitecture.course;
 
-import cleanarchitecture.user.User;
-import cleanarchitecture.user.UserRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 //@RequiredArgsConstructor
 @Service
 @NoArgsConstructor
 public class CourseService {
     private CourseRepository courseRepo;
-    private UserRepository userRepo;
 
-    public CourseService(CourseRepository courseRepo, UserRepository userRepo){
+    public CourseService(CourseRepository courseRepo){
         this.courseRepo = courseRepo;
-        this.userRepo = userRepo;
     }
 
     public List<Course> getCourses() {
@@ -33,18 +28,19 @@ public class CourseService {
         return courseRepo.findApplicantsByCourseId(courseId);
     }
     
-    public Boolean reserveCourse(Long courseId, Long userId){
+    public Boolean reserveCourse(Long courseId){
         // 신청 성공이면 True, 실패면 False 를 반환
         Course course = courseRepo.findByCourseId(courseId);
-        User user = userRepo.findByUserId(userId);
+        
+        // 이미 특강 신청을 완료한 사용자이면 신청 실패 -> User 를 참조하지 않고 해결할 수 있는 방법은?
+//        if (user.getReservedCourseId() != null) return false;
 
-        // 현재 신청자 수가 정원 보다 작을 때에만 신청 성공
-        if (course.getCountOfApplicants() < course.getCapacity()){
-            courseRepo.updateApplicants(courseId, userId);
-            user.setReservedCourseId(courseId);
-            return true;
-        }
-        return false;
+        // 현재 신청자 수가 정원 보다 크거나 같으면 신청 실패
+        if (course.getCountOfApplicants() >= course.getCapacity()) return false;
+        
+        // 그외 경우는 신청 성공
+        courseRepo.updateApplicants(courseId);
+        return true;
     }
 
 }

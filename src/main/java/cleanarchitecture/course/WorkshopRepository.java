@@ -31,9 +31,9 @@ public class WorkshopRepository implements CourseRepository{
     }
 
     @Override
-    public Boolean updateApplicants(Long courseId, Long userId) {
+    public Boolean updateApplicants(Long courseId) {
         List<Long> applicants = courseMap.get(courseId).getApplicants();
-        applicants.add(userId);
+//        applicants.add(userId);
 
         Course course = courseMap.get(courseId);
         course.setApplicants(applicants);
