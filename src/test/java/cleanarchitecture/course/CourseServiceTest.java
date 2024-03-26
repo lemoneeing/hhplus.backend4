@@ -1,5 +1,8 @@
 package cleanarchitecture.course;
 
+import cleanarchitecture.user.EnrolleeRepository;
+import cleanarchitecture.user.User;
+import cleanarchitecture.user.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,12 +11,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CourseServiceTest {
     CourseService service;
 
-    CourseRepository repository;
+    CourseRepository cRepo;
+    UserRepository uRepo;
 
     @BeforeEach
     void beforeEach(){
@@ -25,10 +27,15 @@ class CourseServiceTest {
         course.setApplicants(new ArrayList<Long>());
         course.setDate(LocalDateTime.of(2024, 4, 10, 14, 0));
 
-        repository = new WorkshopRepository();
-        repository.save(course);
+        cRepo = new WorkshopRepository();
+        cRepo.save(course);
 
-        service = new CourseService(repository);
+        User user = new User();
+        user.setUserId(1L);
+        uRepo = new EnrolleeRepository();
+        uRepo.save(user);
+
+        service = new CourseService(cRepo, uRepo);
     }
 
     @Test
@@ -36,51 +43,32 @@ class CourseServiceTest {
         List<Course> courses = service.getCourses();
 
         // courses는 repository 에 저장된 모든 특강 목록과 일치해야 함.
-        Assertions.assertThat(courses).isEqualTo(repository.findAll());
+        Assertions.assertThat(courses).isEqualTo(cRepo.findAll());
     }
 
-//    @Test
-//    void 특강_신청_처리(){
-//        Long userId = 1L;
-//        Long courseId = 1L;
-//
-//        repository.applicants.clear();
-//        Integer initApplicantCnt = repository.applicants.size();
-//
-//        Boolean result = service.reserve(userId, courseId);
-//
-//        // 특강의 applicantCount 값이 1 증가해야 함.
-//        Assertions.assertThat(result).isEqualTo(True);
-//        Assertions.assertThat(repository.applicants.size()).isEqualTo(initApplicantCnt+1); // Repository Test 로 가는 게 더 적절한건가?
-//    }
-//
-//    @Test
-//    void 특강_마감일_때_신청_실패_처리(){
-//        Long userId = 1L;
-//        Long courseId = 1L;
-//
-//        // 특강 마감 상태 만들기
-//        for (int i=0; i < repository.capacity; i++){
-//            repository.applicants.add(0L);
-//        }
-//        Boolean result = service.reserve(userId, courseId);
-//
-//        // 실패해야 함.
-////        assertThrows();
-//    }
-//
-//    @Test
-//    void 동일_사용자가_2개_특강을_신청(){
-//        Long userId = 1L;
-//        Long courseId1 = 1L;
-//        Long courseId2 = 1L;
-//
-//        Boolean result = service.reserve(userId, courseId1); // 성공해야 함.
-//        Boolean result = service.reserve(userId, courseId2); // 실패해야 함.
-//
-//        // 실패해야 함.
-////        assertThrows();
-//    }
+    @Test
+    void 특강_신청_처리(){
+        Long courseId = 1L;
+        Integer initApplicantsCnt = service.getApplicants(courseId).size(); // 현재 강의의 수강 신청자 목록
 
+        Long userId = 1L;
+        service.reserveCourse(courseId, userId);
 
+        Assertions.assertThat(service.getCourseById(courseId).countOfApplicants).isEqualTo(initApplicantsCnt + 1);
+        Assertions.assertThat(this.uRepo.findByUserId(userId).getReservedCourseId()).isEqualTo(courseId);
+    }
+
+    @Test
+    void 특강_마감일_때_신청_실패(){
+        Long courseId = 1L;
+        Course course = service.getCourseById(courseId);
+
+        //특강 마감 상태 만들기
+        course.setCountOfApplicants(course.capacity);
+
+        Long userId = 1L;
+        Boolean result = service.reserveCourse(courseId, userId);
+
+        Assertions.assertThat(result).isEqualTo(false);
+    }
 }
