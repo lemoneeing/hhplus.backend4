@@ -19,8 +19,10 @@ public class WorkshopRepository implements CourseRepository{
     }
 
     @Override
-    public Optional<Course> findByCourseId(Long courseId) {
-        return null;
+    public Course findByCourseId(Long courseId) {
+        Course course = courseMap.get(courseId);
+        if (course != null) return course;
+        else return new Course();
     }
 
     @Override
@@ -33,9 +35,13 @@ public class WorkshopRepository implements CourseRepository{
         List<Long> applicants = courseMap.get(courseId).getApplicants();
         applicants.add(userId);
 
-        courseMap.get(courseId).setApplicants(applicants);
+        Course course = courseMap.get(courseId);
+        course.setApplicants(applicants);
+        course.setCountOfApplicants(applicants.size());
         return true;
     }
 
-
+    public Integer getApplicantsCount(Long courseId){
+        return courseMap.get(courseId).countOfApplicants;
+    }
 }

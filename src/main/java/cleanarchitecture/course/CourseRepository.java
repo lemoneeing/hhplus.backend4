@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface CourseRepository {
     Course save(Course course);
     List<Course> findAll();
-    Optional<Course> findByCourseId(Long courseId);
+    Course findByCourseId(Long courseId);
     List<Long> findApplicantsByCourseId(Long courseId);
     Boolean updateApplicants(Long courseId, Long userId);
 }
