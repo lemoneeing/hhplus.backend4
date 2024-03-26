@@ -1,5 +1,8 @@
 package cleanarchitecture.course;
 
+import cleanarchitecture.user.EnrolleeRepository;
+import cleanarchitecture.user.User;
+import cleanarchitecture.user.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,12 +11,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CourseServiceTest {
     CourseService service;
 
-    CourseRepository repository;
+    CourseRepository cRepo;
+    UserRepository uRepo;
 
     @BeforeEach
     void beforeEach(){
@@ -25,10 +27,15 @@ class CourseServiceTest {
         course.setApplicants(new ArrayList<Long>());
         course.setDate(LocalDateTime.of(2024, 4, 10, 14, 0));
 
-        repository = new WorkshopRepository();
-        repository.save(course);
+        cRepo = new WorkshopRepository();
+        cRepo.save(course);
 
-        service = new CourseService(repository);
+        User user = new User();
+        user.setUserId(1L);
+        uRepo = new EnrolleeRepository();
+        uRepo.save(user);
+
+        service = new CourseService(cRepo, uRepo);
     }
 
     @Test
@@ -36,7 +43,7 @@ class CourseServiceTest {
         List<Course> courses = service.getCourses();
 
         // courses는 repository 에 저장된 모든 특강 목록과 일치해야 함.
-        Assertions.assertThat(courses).isEqualTo(repository.findAll());
+        Assertions.assertThat(courses).isEqualTo(cRepo.findAll());
     }
 
     @Test
@@ -48,6 +55,7 @@ class CourseServiceTest {
         service.reserveCourse(courseId, userId);
 
         Assertions.assertThat(service.getCourseById(courseId).countOfApplicants).isEqualTo(initApplicantsCnt + 1);
+        Assertions.assertThat(this.uRepo.findByUserId(userId).getReservedCourseId()).isEqualTo(courseId);
     }
 
     @Test
