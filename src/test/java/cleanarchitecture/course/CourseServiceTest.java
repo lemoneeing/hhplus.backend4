@@ -49,34 +49,18 @@ class CourseServiceTest {
 
         Assertions.assertThat(service.getCourseById(courseId).countOfApplicants).isEqualTo(initApplicantsCnt + 1);
     }
-//
-//    @Test
-//    void 특강_마감일_때_신청_실패_처리(){
-//        Long userId = 1L;
-//        Long courseId = 1L;
-//
-//        // 특강 마감 상태 만들기
-//        for (int i=0; i < repository.capacity; i++){
-//            repository.applicants.add(0L);
-//        }
-//        Boolean result = service.reserve(userId, courseId);
-//
-//        // 실패해야 함.
-////        assertThrows();
-//    }
-//
-//    @Test
-//    void 동일_사용자가_2개_특강을_신청(){
-//        Long userId = 1L;
-//        Long courseId1 = 1L;
-//        Long courseId2 = 1L;
-//
-//        Boolean result = service.reserve(userId, courseId1); // 성공해야 함.
-//        Boolean result = service.reserve(userId, courseId2); // 실패해야 함.
-//
-//        // 실패해야 함.
-////        assertThrows();
-//    }
 
+    @Test
+    void 특강_마감일_때_신청_실패(){
+        Long courseId = 1L;
+        Course course = service.getCourseById(courseId);
 
+        //특강 마감 상태 만들기
+        course.setCountOfApplicants(course.capacity);
+
+        Long userId = 1L;
+        Boolean result = service.reserveCourse(courseId, userId);
+
+        Assertions.assertThat(result).isEqualTo(false);
+    }
 }
