@@ -47,7 +47,7 @@ class CourseServiceTest {
         Long userId = 1L;
         service.reserveCourse(courseId, userId);
 
-        Assertions.assertThat(service.getApplicants(courseId).size()).isEqualTo(initApplicantsCnt + 1);
+        Assertions.assertThat(service.getCourseById(courseId).countOfApplicants).isEqualTo(initApplicantsCnt + 1);
     }
 //
 //    @Test
