@@ -1,12 +1,9 @@
-package cleanarchitecture.user;
-
-import jakarta.persistence.*;
-import lombok.Getter;
+package cleanarchitecture.user_not_used;
 
 //@Entity
 //@Getter
-//public class Enrollee implements User {
-//
+//@Setter
+//public class User {
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long userId;

@@ -1,5 +1,7 @@
-package cleanarchitecture.course;
+package cleanarchitecture.business;
 
+import cleanarchitecture.data.Course;
+import cleanarchitecture.data.CourseRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +10,10 @@ import java.util.List;
 //@RequiredArgsConstructor
 @Service
 @NoArgsConstructor
-public class CourseService {
+public class CourseService_old {
     private CourseRepository courseRepo;
 
-    public CourseService(CourseRepository courseRepo){
+    public CourseService_old(CourseRepository courseRepo){
         this.courseRepo = courseRepo;
     }
 
@@ -28,7 +30,7 @@ public class CourseService {
         return courseRepo.findApplicantsByCourseId(courseId);
     }
     
-    public Boolean reserveCourse(Long courseId){
+    public Long reserveCourse(Long courseId){
         // 신청 성공이면 True, 실패면 False 를 반환
         Course course = courseRepo.findByCourseId(courseId);
         
@@ -36,11 +38,11 @@ public class CourseService {
 //        if (user.getReservedCourseId() != null) return false;
 
         // 현재 신청자 수가 정원 보다 크거나 같으면 신청 실패
-        if (course.getCountOfApplicants() >= course.getCapacity()) return false;
+        if (course.getCountOfApplicants() >= course.getCapacity()) return -1L;
         
         // 그외 경우는 신청 성공
         courseRepo.updateApplicants(courseId);
-        return true;
+        return courseId;
     }
 
 }

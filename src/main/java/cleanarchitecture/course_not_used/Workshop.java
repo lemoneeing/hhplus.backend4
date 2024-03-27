@@ -1,11 +1,4 @@
-package cleanarchitecture.course;
-
-import jakarta.persistence.*;
-import lombok.Getter;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDateTime;
-import java.util.List;
+package cleanarchitecture.course_not_used;
 
 //@Entity
 //@Getter

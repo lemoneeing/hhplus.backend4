@@ -1,13 +1,12 @@
-package cleanarchitecture.user;
+package cleanarchitecture.data;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Getter
-@Setter
-public class User {
+public class Enrollee{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;

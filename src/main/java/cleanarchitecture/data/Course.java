@@ -1,4 +1,4 @@
-package cleanarchitecture.course;
+package cleanarchitecture.data;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;

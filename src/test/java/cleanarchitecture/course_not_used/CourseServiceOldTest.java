@@ -1,8 +1,11 @@
-package cleanarchitecture.course;
+package cleanarchitecture.course_not_used;
 
-import cleanarchitecture.user.EnrolleeRepository;
-import cleanarchitecture.user.User;
-import cleanarchitecture.user.UserRepository;
+import cleanarchitecture.business.CourseService_old;
+import cleanarchitecture.data.Course;
+import cleanarchitecture.data.CourseRepository;
+import cleanarchitecture.data.EnrolleeRepository;
+import cleanarchitecture.user_not_used.User;
+import cleanarchitecture.user_not_used.UserRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,8 +14,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-class CourseServiceTest {
-    CourseService service;
+class CourseServiceOldTest {
+    CourseService_old service;
 
     CourseRepository cRepo;
     UserRepository uRepo;
@@ -35,7 +38,8 @@ class CourseServiceTest {
         uRepo = new EnrolleeRepository();
         uRepo.save(user);
 
-        service = new CourseService(cRepo, uRepo);
+//        service = new CourseService(cRepo, uRepo);
+        service = new CourseService_old(cRepo);
     }
 
     @Test
@@ -52,7 +56,8 @@ class CourseServiceTest {
         Integer initApplicantsCnt = service.getApplicants(courseId).size(); // 현재 강의의 수강 신청자 목록
 
         Long userId = 1L;
-        service.reserveCourse(courseId, userId);
+//        service.reserveCourse(courseId, userId);
+        service.reserveCourse(courseId);
 
         Assertions.assertThat(service.getCourseById(courseId).countOfApplicants).isEqualTo(initApplicantsCnt + 1);
         Assertions.assertThat(this.uRepo.findByUserId(userId).getReservedCourseId()).isEqualTo(courseId);
@@ -67,8 +72,8 @@ class CourseServiceTest {
         course.setCountOfApplicants(course.capacity);
 
         Long userId = 1L;
-        Boolean result = service.reserveCourse(courseId, userId);
+//        Boolean result = service.reserveCourse(courseId, userId);
 
-        Assertions.assertThat(result).isEqualTo(false);
+        Assertions.assertThat(service.reserveCourse(courseId)).isEqualTo(courseId);
     }
 }

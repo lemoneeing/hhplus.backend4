@@ -1,9 +1,12 @@
-package cleanarchitecture.course;
+package cleanarchitecture.course_not_used;
+
+import cleanarchitecture.data.Course;
+import cleanarchitecture.data.CourseRepository;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class WorkshopRepository implements CourseRepository{
+public class WorkshopRepository implements CourseRepository {
     private static Map<Long, Course> courseMap = new ConcurrentHashMap<>();
     private static long sequence = 0L;
 
