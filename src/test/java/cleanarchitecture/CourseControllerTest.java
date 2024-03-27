@@ -1,22 +1,39 @@
 package cleanarchitecture;
 
+import cleanarchitecture.business.CourseService;
+import cleanarchitecture.data.Course;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest
 class CourseControllerTest {
 
-    CourseController controller = new CourseController();
+    @Autowired
+    CourseController controller;
+    @Autowired
+    CourseService cSvc;
 
-    @Test
-    void 루트_URL은_특강_조회로_리다이렉트(){
+    @BeforeEach
+    void beforeEach(){
 
+        Course c = new Course();
+        c.setCourseId(1L);
+        c.setCourseName("course1");
+        c.setCapacity(30);
+        c.setCountOfApplicants(10);
+
+        this.cSvc.repository.save(c);
     }
 
     @Test
-    void 특강_조회() {
-        // "course/list" 로 Get 요청이 들어오면 모든 특강의 목록이 보여야 함.
+    void 특강_신청(){
+        Long cId = 1L;
+        Integer initCnt = cSvc.repository.findCountOfApplicantsByCourseId(cId);
+        controller.reserveCourse(cId);
+
+        Assertions.assertThat(cSvc.repository.findCountOfApplicantsByCourseId(cId)).isEqualTo(initCnt+1);
     }
-
-
 }
