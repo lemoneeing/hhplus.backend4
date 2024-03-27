@@ -1,6 +1,5 @@
 package cleanarchitecture.data;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,14 +23,10 @@ public class Course {
     public Integer capacity;
 
     @Column
-    public List<Long> applicants; // DB Column 에 List type 을 사용해도 되는지...?
-
-    @Column
     public Integer countOfApplicants = 0;
 
     @Column
     @DateTimeFormat(pattern="yy-MM-dd HH:mm")
-//    @JsonFormat(pattern="yy-MM-dd HH:mm")
     public LocalDateTime date;
 
 }
