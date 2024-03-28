@@ -3,4 +3,8 @@
 ## W02: Clean Architecture ##
 ### ERD ###
 
-![image](https://github.com/lemoneeing/hhplus.backend4/assets/138500282/aff38b6e-427d-40dd-beb0-2e3394a414a3)
+![image](https://github.com/lemoneeing/hhplus.backend4/assets/138500282/8f995729-fb65-47bd-90bd-b0978755df28)
+<br /><br />
+### 목표 Architecture ###
+
+![image](https://github.com/lemoneeing/hhplus.backend4/assets/138500282/40395d15-1a47-457b-9501-555c6ee59989)
