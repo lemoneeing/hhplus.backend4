@@ -1,10 +1,10 @@
-package cleanarchitecture.data;
+package cleanarchitecture.persistence;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDateTime;
 
 @DataJpaTest
 class CourseRepositoryImplTest {
@@ -13,13 +13,10 @@ class CourseRepositoryImplTest {
 
     @Test
     void 엔티티_저장(){
-        Course c = new Course();
-        c.setCourseId(1L);
-        c.setCourseName("course1");
-        c.setCapacity(30);
-        c.setCountOfApplicants(10);
+        Course c = new Course("course1", 1, LocalDateTime.of(2024, 12, 31, 12, 0));
 
         repo.save(c);
+
 
 //        Assertions.assertThat(repo.findById(1L)).isEqualTo(c);
     }
