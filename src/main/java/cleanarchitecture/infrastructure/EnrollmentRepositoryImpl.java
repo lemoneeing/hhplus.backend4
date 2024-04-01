@@ -1,6 +1,6 @@
-package cleanarchitecture.persistence;
+package cleanarchitecture.infrastructure;
 
-import cleanarchitecture.business.IEnrollmentRepository;
+import cleanarchitecture.application.IEnrollmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

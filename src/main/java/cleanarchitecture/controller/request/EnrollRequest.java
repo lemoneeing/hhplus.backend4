@@ -1,8 +1,7 @@
-package cleanarchitecture.presentation.request;
+package cleanarchitecture.controller.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 @NoArgsConstructor
