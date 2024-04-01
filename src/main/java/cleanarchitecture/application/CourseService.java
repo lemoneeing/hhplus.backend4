@@ -14,7 +14,7 @@ public class CourseService {
 
     // 특강 추가 후 특강 Id 반환
     public Long createCourse(String courseName, Integer courseCapacity, LocalDateTime courseDate){
-        return repository.create(courseName, courseCapacity, courseDate).getCourseId();
+        return repository.create(courseName, courseCapacity, courseDate).getId();
     }
 
     // 해당 ID 를 갖는 특강의 존재 여부 반환

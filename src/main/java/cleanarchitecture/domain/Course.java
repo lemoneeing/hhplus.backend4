@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Course {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long courseId;
+    private Long Id;
 
     @Column(length=50)
     public String courseName;

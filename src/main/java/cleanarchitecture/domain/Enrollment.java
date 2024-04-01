@@ -9,7 +9,7 @@ public class Enrollment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long enrollmentId;
+    private Long Id;
 
     @Column
     public Long courseId;
