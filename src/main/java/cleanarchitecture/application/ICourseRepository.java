@@ -1,6 +1,6 @@
-package cleanarchitecture.business;
+package cleanarchitecture.application;
 
-import cleanarchitecture.persistence.Course;
+import cleanarchitecture.domain.Course;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;

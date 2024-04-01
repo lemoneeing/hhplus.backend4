@@ -1,7 +1,5 @@
-package cleanarchitecture.business;
+package cleanarchitecture.application;
 
-import cleanarchitecture.persistence.CourseRepositoryImpl;
-import cleanarchitecture.persistence.ICourseJpaRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CourseServiceTest{
 

@@ -1,4 +1,4 @@
-package cleanarchitecture.business;
+package cleanarchitecture.application;
 
 import org.springframework.stereotype.Service;
 
