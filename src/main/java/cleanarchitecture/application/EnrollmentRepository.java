@@ -1,10 +1,9 @@
 package cleanarchitecture.application;
 
 import cleanarchitecture.domain.Enrollment;
-import org.springframework.stereotype.Repository;
 
 @Repositor
-public interface IEnrollmentRepository {
+public interface EnrollmentRepository {
     // 수강 신청 내역 생성
     Enrollment save(Long courseId, Long userId);
     

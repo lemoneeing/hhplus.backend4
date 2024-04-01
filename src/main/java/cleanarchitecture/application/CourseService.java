@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 // Course 를 모르게 하고 싶음.
 @Service
 public class CourseService {
-    public final ICourseRepository repository;
+    public final CourseRepository repository;
 
-    public CourseService(ICourseRepository repository) {
+    public CourseService(CourseRepository repository) {
         this.repository = repository;
     }
 

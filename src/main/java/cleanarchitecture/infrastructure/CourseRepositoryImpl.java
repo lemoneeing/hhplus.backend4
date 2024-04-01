@@ -1,6 +1,6 @@
 package cleanarchitecture.infrastructure;
 
-import cleanarchitecture.application.ICourseRepository;
+import cleanarchitecture.application.CourseRepository;
 import cleanarchitecture.domain.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Component
-public class CourseRepositoryImpl implements ICourseRepository {
+public class CourseRepositoryImpl implements CourseRepository {
     @Autowired
-    final ICourseJpaRepository jpaRepository; // Jpa 사용에 익숙하지 않아서 Member 로 주입
+    final JpaCourseRepository jpaRepository; // Jpa 사용에 익숙하지 않아서 Member 로 주입
 
-    public CourseRepositoryImpl(ICourseJpaRepository jpaRepository) {
+    public CourseRepositoryImpl(JpaCourseRepository jpaRepository) {
         this.jpaRepository = jpaRepository;
     }
 

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 class CourseServiceTest{
 
-    ICourseRepository cRepo;
+    CourseRepository cRepo;
     @Autowired
     CourseService svc;
     Long firstCourseId;

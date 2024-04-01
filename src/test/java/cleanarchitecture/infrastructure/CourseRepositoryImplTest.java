@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @DataJpaTest
 class CourseRepositoryImplTest {
     @Autowired
-    ICourseJpaRepository repo;
+    JpaCourseRepository repo;
 
     @Test
     void 엔티티_저장(){

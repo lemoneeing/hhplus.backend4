@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EnrollmentService {
-    final IEnrollmentRepository repository;
-    public EnrollmentService(IEnrollmentRepository repo) {
+    final EnrollmentRepository repository;
+    public EnrollmentService(EnrollmentRepository repo) {
         this.repository = repo;
     }
 
