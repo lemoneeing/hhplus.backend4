@@ -20,6 +20,7 @@ public class EnrollmentController {
     public String enrollCourse(@PathVariable Long courseId, @RequestBody EnrollRequest enrollRequest){
         Long userId = enrollRequest.getUserId();
 
+        // ** 다음 Code 들은 Buisness Login 이므로 Service 로 이동시켜야 한다.
         // 특강을 더 이상 신청할 수 없는 사용자일 경우
         if (!enrollmentSvc.isUserFree(userId)){
             return "실패! 더 이상 신청할 수 없습니다.";
@@ -29,7 +30,7 @@ public class EnrollmentController {
         if (!courseSvc.CourseHasSpace(courseId)){
             return "실패! 특강이 마감되었습니다.";
         }
-        enrollmentSvc.createEnrollment(courseId, userId);
+        enrollmentSvc.create(courseId, userId);
         courseSvc.addCourseApplicants(courseId);
 
         String courseName = courseSvc.findCourseNameByCourseID(courseId);
@@ -40,7 +41,12 @@ public class EnrollmentController {
     @GetMapping("{userID}")
     @ResponseBody
     public String checkCourseEnrolled(@PathVariable Long userId){
-        Long courseId = enrollmentSvc.showCourseIdByUserId(userId);
+
+        // ** 다음 Code 들은 Buisness Login 이므로 Service 로 이동시켜야 한다.
+        // 사용자 ID 로 신청된 특강 ID
+        Long courseId = enrollmentSvc.getCourseIdByUserId(userId);
+        
+        // 신청된 특강 출력
         if (courseSvc.doesCourseExist(courseId)) {
             return "당신은 '" + courseSvc.findCourseNameByCourseID(courseId) + "' 수강 신청을 완료하였습니다.";
         }
