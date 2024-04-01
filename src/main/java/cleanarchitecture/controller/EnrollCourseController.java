@@ -15,7 +15,7 @@ public class EnrollCourseController {
     private final EnrollmentService enrollmentSvc;
 
     // 특강 신청
-    @PostMapping("enroll/{courseId}")
+    @PostMapping("enrollment/{courseId}")
     @ResponseBody
     public String enrollCourse(@PathVariable Long courseId, @RequestBody EnrollRequest enrollRequest){
         Long userId = enrollRequest.getUserId();
@@ -35,8 +35,9 @@ public class EnrollCourseController {
         String courseName = courseSvc.findCourseNameByCourseID(courseId);
         return "성공! '"+ courseName + "' 를 수강 신청하였습니다. ";
     }
-
-    @GetMapping("enroll/{userID}")
+    
+    // 신청한 강의 조회
+    @GetMapping("enrollment/{userID}")
     @ResponseBody
     public String checkCourseEnrolled(@PathVariable Long userId){
         Long courseId = enrollmentSvc.showCourseIdByUserId(userId);
