@@ -1,8 +1,8 @@
 package cleanarchitecture;
 
-import cleanarchitecture.business.CourseService;
-import cleanarchitecture.persistence.Course;
-import cleanarchitecture.presentation.EnrollCourseController;
+import cleanarchitecture.application.CourseService;
+import cleanarchitecture.domain.Course;
+import cleanarchitecture.controller.EnrollCourseController;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

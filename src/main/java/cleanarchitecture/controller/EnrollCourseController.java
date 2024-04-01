@@ -1,8 +1,8 @@
-package cleanarchitecture.presentation;
+package cleanarchitecture.controller;
 
-import cleanarchitecture.business.CourseService;
-import cleanarchitecture.business.EnrollmentService;
-import cleanarchitecture.presentation.request.EnrollRequest;
+import cleanarchitecture.application.CourseService;
+import cleanarchitecture.application.EnrollmentService;
+import cleanarchitecture.controller.request.EnrollRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
