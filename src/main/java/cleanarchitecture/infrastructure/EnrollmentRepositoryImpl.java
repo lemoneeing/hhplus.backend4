@@ -5,10 +5,13 @@ import cleanarchitecture.application.EnrollmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class EnrollmentRepositoryImpl implements EnrollmentRepository {
+    private static Map<Long, Enrollment> enrollmentMap = new ConcurrentHashMap<>();
     @Autowired
     JpaEnrollmentRepository jpaRepository;  // Jpa 사용에 익숙하지 않아서 Member 로 주입
 

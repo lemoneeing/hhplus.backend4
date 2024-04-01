@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class CourseRepositoryImpl implements CourseRepository {
+    private static Map<Long, Course> courseMap = new ConcurrentHashMap<>();
+
     @Autowired
     final JpaCourseRepository jpaRepository; // Jpa 사용에 익숙하지 않아서 Member 로 주입
 
@@ -20,13 +24,15 @@ public class CourseRepositoryImpl implements CourseRepository {
     @Override
     public Course create(String courseName, Integer capacity, LocalDateTime courseDate) {
         Course c = new Course(courseName, capacity, courseDate);
-        jpaRepository.save(c);
+        courseMap.put(c.getId(), c);
+//        jpaRepository.save(c);
         return c;
     }
 
     @Override
     public Optional<Course> findById(Long courseId) {
-        return jpaRepository.findById(courseId);
+//        return jpaRepository.findById(courseId);
+        return Optional.ofNullable(courseMap.get(courseId));
     }
 
     public Course convertCourse(Optional<Course> opt){
