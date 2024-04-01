@@ -2,7 +2,6 @@ package cleanarchitecture.application;
 
 import cleanarchitecture.domain.Enrollment;
 
-@Repositor
 public interface EnrollmentRepository {
     // 수강 신청 내역 생성
     Enrollment save(Long courseId, Long userId);

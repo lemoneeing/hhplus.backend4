@@ -2,11 +2,11 @@ package cleanarchitecture.infrastructure;
 
 import cleanarchitecture.application.EnrollmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Component
+@Repository
 public class EnrollmentRepositoryImpl implements EnrollmentRepository {
     @Autowired
     JpaEnrollmentRepository jpaRepository;  // Jpa 사용에 익숙하지 않아서 Member 로 주입

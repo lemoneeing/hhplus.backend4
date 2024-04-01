@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Repository
 public interface CourseRepository {
     // 강의 추가
     Course create(String courseName, Integer capacity, LocalDateTime courseDate);

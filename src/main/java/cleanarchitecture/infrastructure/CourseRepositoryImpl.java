@@ -4,11 +4,12 @@ import cleanarchitecture.application.CourseRepository;
 import cleanarchitecture.domain.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Component
+@Repository
 public class CourseRepositoryImpl implements CourseRepository {
     @Autowired
     final JpaCourseRepository jpaRepository; // Jpa 사용에 익숙하지 않아서 Member 로 주입
