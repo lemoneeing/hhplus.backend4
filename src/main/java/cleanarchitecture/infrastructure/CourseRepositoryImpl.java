@@ -3,7 +3,6 @@ package cleanarchitecture.infrastructure;
 import cleanarchitecture.application.CourseRepository;
 import cleanarchitecture.domain.Course;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -26,7 +25,7 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
-    public Optional<Course> findByCourseId(Long courseId) {
+    public Optional<Course> findById(Long courseId) {
         return jpaRepository.findById(courseId);
     }
 
@@ -36,14 +35,14 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
-    public Integer findCountOfApplicants(Long courseId) {
-        Course course = convertCourse(findByCourseId(courseId));
+    public Integer findCountOfApplicantsById(Long courseId) {
+        Course course = convertCourse(findById(courseId));
         return course.getCountOfApplicants();
     }
 
     @Override
     public Integer addCountOfApplicants(Long courseId) {
-        Course course = convertCourse(findByCourseId(courseId));
+        Course course = convertCourse(findById(courseId));
         course.setCountOfApplicants(course.getCountOfApplicants() + 1);
         return course.getCountOfApplicants(); // 여기서는 +1 된 값이 반환되지만 CourseService 의 add~ 에서는 다시 원래 값으로 반환됨...ㅠ
     }

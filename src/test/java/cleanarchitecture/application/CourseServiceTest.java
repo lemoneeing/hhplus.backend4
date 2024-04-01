@@ -27,7 +27,7 @@ class CourseServiceTest{
 
     @Test
     void 특강_신청(){
-        Integer initCnt = svc.repository.convertCourse(svc.repository.findByCourseId(this.firstCourseId)).getCountOfApplicants();
+        Integer initCnt = svc.repository.convertCourse(svc.repository.findById(this.firstCourseId)).getCountOfApplicants();
 
         Assertions.assertThat(svc.addCourseApplicants(this.firstCourseId)).isEqualTo(initCnt+1);
 
