@@ -1,4 +1,4 @@
-package cleanarchitecture.persistence;
+package cleanarchitecture.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
