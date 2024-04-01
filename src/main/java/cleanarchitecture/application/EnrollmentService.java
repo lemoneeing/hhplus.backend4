@@ -9,11 +9,11 @@ public class EnrollmentService {
         this.repository = repo;
     }
 
-    public void createEnrollment(Long courseId, Long userId){
+    public void create(Long courseId, Long userId){
         repository.save(courseId, userId);
     }
 
-    public Long showCourseIdByUserId(Long userId){
+    public Long getCourseIdByUserId(Long userId){
         return repository.findCourseIdByUserId(userId);
     }
 
