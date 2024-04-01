@@ -17,7 +17,7 @@ public class Enrollment {
     @Column
     public Long userId;
 
-    Enrollment(Long courseId, Long userId){
+    public Enrollment(Long courseId, Long userId){
         this.courseId = courseId;
         this.userId = userId;
     }

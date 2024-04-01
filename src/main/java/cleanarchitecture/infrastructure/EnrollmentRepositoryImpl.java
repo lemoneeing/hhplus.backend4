@@ -1,5 +1,6 @@
 package cleanarchitecture.infrastructure;
 
+import cleanarchitecture.domain.Enrollment;
 import cleanarchitecture.application.EnrollmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
