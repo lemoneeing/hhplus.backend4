@@ -2,7 +2,7 @@ package cleanarchitecture;
 
 import cleanarchitecture.application.CourseService;
 import cleanarchitecture.domain.Course;
-import cleanarchitecture.controller.EnrollCourseController;
+import cleanarchitecture.controller.EnrollmentController;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,10 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 
 @SpringBootTest
-class EnrollCourseControllerTest {
+class EnrollmentControllerTest {
 
     @Autowired
-    EnrollCourseController controller;
+    EnrollmentController controller;
     @Autowired
     CourseService cSvc;
 

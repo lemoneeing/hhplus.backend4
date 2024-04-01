@@ -4,18 +4,18 @@ import cleanarchitecture.application.CourseService;
 import cleanarchitecture.application.EnrollmentService;
 import cleanarchitecture.controller.request.EnrollRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-public class EnrollCourseController {
+@RequestMapping("/enrollment")
+public class EnrollmentController {
 
     private final CourseService courseSvc;
     private final EnrollmentService enrollmentSvc;
 
     // 특강 신청
-    @PostMapping("enrollment/{courseId}")
+    @PostMapping("{courseId}")
     @ResponseBody
     public String enrollCourse(@PathVariable Long courseId, @RequestBody EnrollRequest enrollRequest){
         Long userId = enrollRequest.getUserId();
@@ -37,7 +37,7 @@ public class EnrollCourseController {
     }
     
     // 신청한 강의 조회
-    @GetMapping("enrollment/{userID}")
+    @GetMapping("{userID}")
     @ResponseBody
     public String checkCourseEnrolled(@PathVariable Long userId){
         Long courseId = enrollmentSvc.showCourseIdByUserId(userId);
