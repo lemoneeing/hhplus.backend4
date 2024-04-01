@@ -3,20 +3,16 @@ package cleanarchitecture.controller;
 import cleanarchitecture.application.CourseService;
 import cleanarchitecture.application.EnrollmentService;
 import cleanarchitecture.controller.request.EnrollRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 public class EnrollCourseController {
-    @Autowired
-    final CourseService courseSvc;
-    @Autowired
-    final EnrollmentService enrollmentSvc;
 
-    public EnrollCourseController(CourseService courseSvc, EnrollmentService enrollmentSvc) {
-        this.courseSvc = courseSvc;
-        this.enrollmentSvc = enrollmentSvc;
-    }
+    private final CourseService courseSvc;
+    private final EnrollmentService enrollmentSvc;
 
     // 특강 신청
     @PostMapping("enroll/{courseId}")
